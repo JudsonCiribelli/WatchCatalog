@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Header() {
+const Header = () => {
   return (
     <header className="flex  items-center justify-around w-full h-16 bg-black">
       <Link
@@ -17,6 +17,5 @@ function Header() {
       </Link>
     </header>
   );
-}
-
+};
 export default Header;
