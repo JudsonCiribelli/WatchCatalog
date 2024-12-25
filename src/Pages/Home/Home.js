@@ -29,17 +29,17 @@ const Home = () => {
   }
 
   return (
-    <div className="m-16 bg-[#e9e3d5]">
+    <div className="m-16 bg-[#E4E4E4]">
       <div className="grid grid-cols-4 gap-4  max-w-full  my-5  ml-16">
         {series.map((series) => {
           return (
             <article key={series.id} className="w-full p-3.5 rounded-md">
-              <h1 className=" block mb-4 text-base">{series.name}</h1>
               <img
-                className="rounded-xl"
+                className="rounded-xl w-full"
                 src={series.image.medium}
                 alt={series.name}
               />
+              <h1 className=" block mb-4 text-base">{series.name}</h1>
               <Link to={`/details/${series.id}`}>
                 <CustomButton>Acessar</CustomButton>
               </Link>
