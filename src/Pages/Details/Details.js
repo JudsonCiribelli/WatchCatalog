@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 //Services
 import Api from "../../services/api.js";
 //Components
 import Loading from "../../Components/Loading/Loading-Component.js";
 
 const Details = () => {
-  const [serie, setSerie] = useState(null); // Inicializar como null
+  const [serie, setSerie] = useState(null);
+  const navigate = useNavigate();
   const { id } = useParams();
   const plainTextSummary =
     serie?.summary?.replace(/<\/?[^>]+(>|$)/g, "") || "Sinopse não disponível";
@@ -24,10 +25,12 @@ const Details = () => {
         setSerie(response.data);
       } catch (error) {
         console.error(error);
+        navigate("/", { replace: true });
+        return;
       }
     }
     LoadSeries();
-  }, [id]);
+  }, [id, navigate]);
 
   if (!serie) {
     return <Loading />;
@@ -66,7 +69,12 @@ const Details = () => {
         <div className="flex">
           <button className="mr-3 bg-black text-white p-3 rounded">
             {" "}
-            <a href="#">Trailer</a>
+            <a
+              target="blank"
+              href={`https://www.youtube.com/results?search_query=${serie.name}`}
+            >
+              Trailer
+            </a>
           </button>
           <button className="mr-3  bg-black text-white p-3 rounded">
             {" "}
