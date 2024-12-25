@@ -8,6 +8,8 @@ import Loading from "../../Components/Loading/Loading-Component.js";
 const Details = () => {
   const [serie, setSerie] = useState(null); // Inicializar como null
   const { id } = useParams();
+  const plainTextSummary =
+    serie?.summary?.replace(/<\/?[^>]+(>|$)/g, "") || "Sinopse não disponível";
 
   useEffect(() => {
     async function LoadSeries() {
@@ -40,11 +42,37 @@ const Details = () => {
       />
 
       <div className="flex flex-col justify-start space-y-4 p-8 w-2/5 h-h-500 bg-[#C0C0C0] border-solidborder-2 rounded-r-xl">
-        <h1>{serie.name || "Título indisponível"}</h1>
-        <h2>{serie.language || "Idioma não especificado"}</h2>
-        <h2>{serie.premiered || "Data não disponível"}</h2>
-        <h2>Duração: {serie.runtime || "Duração não informada"} Minutos</h2>
-        <h2>Avaliação: {serie.rating?.average || "N/A"} /10</h2>
+        <strong className="text-3xl">
+          {serie.name || "Title not specified"}
+        </strong>
+        <h2>
+          <strong>Language:</strong>{" "}
+          {serie.language || "Language not specified"}
+        </h2>
+        <h2>
+          <strong>Release date:</strong>{" "}
+          {serie.premiered || "Date not specified"}
+        </h2>
+        <h2>
+          <strong>Duration:</strong> {serie.runtime || "Duration not specified"}{" "}
+          Minutes
+        </h2>
+        <h2>
+          <strong>Assessment: </strong>
+          {serie.rating?.average || "Assessment not specified"}/10
+        </h2>
+        <strong>Synopsis</strong>
+        <p>{plainTextSummary || "Synopsis not specified"}</p>
+        <div className="flex">
+          <button className="mr-3 bg-black text-white p-3 rounded">
+            {" "}
+            <a href="#">Trailer</a>
+          </button>
+          <button className="mr-3  bg-black text-white p-3 rounded">
+            {" "}
+            Salvar{" "}
+          </button>
+        </div>
       </div>
     </div>
   );

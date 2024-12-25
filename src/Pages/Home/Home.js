@@ -18,7 +18,7 @@ const Home = () => {
           page: 1,
         },
       });
-      setSeries(response.data.slice(0, 20));
+      setSeries(response.data.slice(0, 32));
       setLoading(false);
     }
     LoadSeries();
