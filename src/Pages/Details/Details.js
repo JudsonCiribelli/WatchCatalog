@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 //Services
 import Api from "../../services/api.js";
 //Components
@@ -44,7 +45,7 @@ const Details = () => {
     const hasSeries = seriesList.some((serieList) => serieList.id === serie.id);
 
     if (hasSeries) {
-      alert("Este filme ja esta na sua lista");
+      toast.warn("Esta série ja está na sua lista!");
       return;
     }
 
@@ -52,7 +53,7 @@ const Details = () => {
 
     localStorage.setItem("@Series", JSON.stringify(seriesList));
 
-    alert("Filme salvo com sucesso");
+    toast.success("A série foi salva com sucesso!");
   };
 
   return (

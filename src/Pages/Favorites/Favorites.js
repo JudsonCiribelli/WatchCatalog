@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Favorites = () => {
   const [series, setSeries] = useState([]);
@@ -15,6 +16,7 @@ const Favorites = () => {
     });
     setSeries(filterSeries);
     localStorage.setItem("@Series", JSON.stringify(filterSeries));
+    toast.success("Série removida com sucesso!");
   };
 
   return (
