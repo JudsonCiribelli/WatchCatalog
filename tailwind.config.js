@@ -6,6 +6,13 @@ module.exports = {
       height: {
         "calc-100vh": "calc(100vh - 64px)",
         "h-500": "40.25rem",
+        "h-720": "720px",
+      },
+      width: {
+        "w-720px": "720px",
+      },
+      margin: {
+        "m-20%": "20%",
       },
     },
   },
