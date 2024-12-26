@@ -9,15 +9,29 @@ const Favorites = () => {
     setSeries(JSON.parse(myList) || []);
   }, []);
 
+  const handleRemoveSerieClick = (id) => {
+    let filterSeries = series.filter((serie) => {
+      return serie.id !== id;
+    });
+    setSeries(filterSeries);
+    localStorage.setItem("@Series", JSON.stringify(filterSeries));
+  };
+
   return (
     <div className="my-6 flex flex-col ">
-      <h1 className="my-3 text-4xl mx-m-20% ">Meus Favoritos</h1>
-      <ul className="h-h-720 mx-m-20%">
+      <h1 className="my-3 text-4xl mx-m-40% ">Meus Favoritos</h1>
+      {series.length === 0 && (
+        <span className="text-xl text-red-500 mx-m-38%">
+          Você não possui nenhuma série salva!
+        </span>
+      )}
+
+      <ul className="h-h-720 mx-m-20% ">
         {series.map((serie) => {
           return (
             <li
               key={serie.id}
-              className="flex justify-between items-center  my-4"
+              className="flex justify-between items-center my-4"
             >
               <span className="text-lg">{serie.name}</span>
               <div className="flex justify-center items-center">
@@ -28,7 +42,10 @@ const Favorites = () => {
                   {" "}
                   Ver detalhes
                 </Link>
-                <button className="bg-red-500 text-white mx-4 p-2 rounded">
+                <button
+                  onClick={() => handleRemoveSerieClick(serie.id)}
+                  className="bg-red-500 text-white mx-4 p-2 rounded"
+                >
                   {" "}
                   Excluir{" "}
                 </button>
