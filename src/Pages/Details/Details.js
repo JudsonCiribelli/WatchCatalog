@@ -6,7 +6,7 @@ import Api from "../../services/api.js";
 import Loading from "../../Components/Loading/Loading-Component.js";
 
 const Details = () => {
-  const [serie, setSerie] = useState(null);
+  const [serie, setSerie] = useState({});
   const navigate = useNavigate();
   const { id } = useParams();
   const plainTextSummary =
@@ -35,6 +35,25 @@ const Details = () => {
   if (!serie) {
     return <Loading />;
   }
+
+  const handleSaveSerie = () => {
+    const myList = localStorage.getItem("@Series");
+
+    let seriesList = JSON.parse(myList) || [];
+
+    const hasSeries = seriesList.some((serieList) => serieList.id === serie.id);
+
+    if (hasSeries) {
+      alert("Este filme ja esta na sua lista");
+      return;
+    }
+
+    seriesList.push(serie);
+
+    localStorage.setItem("@Series", JSON.stringify(seriesList));
+
+    alert("Filme salvo com sucesso");
+  };
 
   return (
     <div className=" h-full flex justify-center items-center  w-full my-20">
@@ -71,12 +90,16 @@ const Details = () => {
             {" "}
             <a
               target="blank"
+              rel="external"
               href={`https://www.youtube.com/results?search_query=${serie.name}`}
             >
               Trailer
             </a>
           </button>
-          <button className="mr-3  bg-black text-white p-3 rounded">
+          <button
+            onClick={handleSaveSerie}
+            className="mr-3  bg-black text-white p-3 rounded"
+          >
             {" "}
             Salvar{" "}
           </button>
