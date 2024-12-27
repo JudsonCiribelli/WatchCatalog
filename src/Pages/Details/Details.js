@@ -57,37 +57,50 @@ const Details = () => {
   };
 
   return (
-    <div className=" h-full flex justify-center items-center  w-full my-20">
+    <div className="flex  items-center justify-center gap-6 w-full px-4 py-8">
       <img
-        className="h-h-500 rounded-l-xl  "
+        className="w-full max-w-xl sm:rounded-t-md"
         src={serie.image?.original || "/placeholder.jpg"}
         alt={serie.name || "Série sem nome"}
       />
 
-      <div className="flex flex-col justify-start space-y-4 p-8 w-2/5 h-h-500 bg-[#C0C0C0] border-solidborder-2 rounded-r-xl">
-        <strong className="text-3xl">
+      <div className="flex flex-col space-y-4 w-full max-w-xl p-6 bg-gray-200 rounded-xl">
+        <strong className="text-3xl ">
           {serie.name || "Title not specified"}
         </strong>
         <h2>
-          <strong>Language:</strong>{" "}
-          {serie.language || "Language not specified"}
+          <strong className="sm:text-3xl">Language: </strong>{" "}
+          <span className="sm:text-3xl">
+            {serie.language || "Language not specified"}
+          </span>
         </h2>
         <h2>
-          <strong>Release date:</strong>{" "}
-          {serie.premiered || "Date not specified"}
+          <strong className="sm:text-3xl">Release date:</strong>{" "}
+          <span className="sm:text-3xl">
+            {" "}
+            {serie.premiered || "Date not specified"}
+          </span>
         </h2>
         <h2>
-          <strong>Duration:</strong> {serie.runtime || "Duration not specified"}{" "}
-          Minutes
+          <strong className="sm:text-3xl">Duration:</strong>
+          <span className="sm:text-3xl">
+            {" "}
+            {serie.runtime || "Duration not specified"} Minutes
+          </span>
         </h2>
         <h2>
-          <strong>Assessment: </strong>
-          {serie.rating?.average || "Assessment not specified"}/10
+          <strong className="sm:text-3xl">Assessment: </strong>
+          <span className="sm:text-3xl">
+            {" "}
+            {serie.rating?.average || "Assessment not specified"}/10
+          </span>
         </h2>
-        <strong>Synopsis</strong>
-        <p>{plainTextSummary || "Synopsis not specified"}</p>
-        <div className="flex">
-          <button className="mr-3 bg-black text-white p-3 rounded">
+        <strong className="sm:text-3xl">Synopsis: </strong>
+        <p className="sm:text-2xl">
+          {plainTextSummary || "Synopsis not specified"}
+        </p>
+        <div className="flex flex-col gap-4">
+          <button className="bg-black text-white px-4 py-2 rounded text-center sm:h-16 sm:text-2xl">
             {" "}
             <a
               target="blank"
@@ -99,7 +112,7 @@ const Details = () => {
           </button>
           <button
             onClick={handleSaveSerie}
-            className="mr-3  bg-black text-white p-3 rounded"
+            className="bg-black text-white px-4 py-2 rounded sm:h-16 sm:text-2xl"
           >
             {" "}
             Salvar{" "}
